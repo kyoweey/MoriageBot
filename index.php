@@ -5,9 +5,13 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 require_once 'reply.php';
 
-define('TRIGGER', '登録');
-define('WHAT', 'どんな言葉をきっかけに？');
-define('HOW', 'どのように盛り上げればいい？');
+$moriageArray = array(
+	'は！'				=>			'は！'
+	,'ジャック'			=>			'ジャアアアアアック！'
+	,'フットサル'			=>			'やりましょおお！フットサル！！'
+);
+
+
 
 // アクセストークンを使いCurlHTTPClientをインスタンス化
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('CHANNEL_ACCESS_TOKEN'));
@@ -45,15 +49,14 @@ foreach ($events as $event) {
 
 	$getText = $event->getText();
 
-	if ($getText == TRIGGER){
-		$lastReplyText == WHAT;
-		$bot->replyText($event->getReplyToken(), WHAT);
-	}elseif ($lastReplyText && ($lastReplyText == WHAT)) {
-		$bot->replyText($event->getReplyToken(), HOW);
-	}else{
-		//おうむ返し
-		$bot->replyText($event->getReplyToken(), $event->getText());
+	foreach ($moriageArray as $key => $value){
+		if ($getText == $key){
+			$bot->replyText($event->getReplyToken(), $value);
+			break;
+		}
 	}
+
+		// $bot->replyText($event->getReplyToken(), WHAT);
 }
 
 ?>
