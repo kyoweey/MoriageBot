@@ -5,7 +5,7 @@ class MoriageController
 	public function moriage($bot, $event)
 	{
 		$getText = $event->getText();
-		foreach ($moriageArray as $key => $value){
+		foreach (MoriageArray as $key => $value){
 			if ($getText == $key){
 				$bot->replyText($event->getReplyToken(), $value);
 				break;
