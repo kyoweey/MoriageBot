@@ -1,6 +1,6 @@
 <?php
 
-class moriageController
+class MoriageController
 {
 	public function moriage($bot, $event)
 	{
